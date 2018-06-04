@@ -1,24 +1,15 @@
-# README
+ Basic User with simple authentication.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Bcrypt authentication
 
-Things you may want to cover:
+Add Bcrypt to [gemfile](Gemfile).
 
-* Ruby version
+Include `has_secure_password` *method* in [User model](app/models/user.rb) to enable password hashing and the **authenticate** method, which returns false if password is incorrect and the user if correct.
 
-* System dependencies
+Remember to set **password** to `password_digest` attribute when [creating the model](db/migrate/20180603101550_create_users.rb) for table migration. `has_secure_password` enforces validations on **password**, however, so use **password** as attribute in [User model](app/models/user.rb).
 
-* Configuration
+## Testing
 
-* Database creation
+Utilizing [**MiniTest**](http://guides.rubyonrails.org/testing.html).
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Gathering together all the unit and integration tests that are needed for ensuring code won't break with changes.
