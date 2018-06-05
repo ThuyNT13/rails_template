@@ -4,6 +4,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 
   test "valid signup" do
     get signup_path
+    assert_template 'users/new'
+    assert_select 'form[action=?]', '/users'
     assert_difference 'User.count', 1 do
       post signup_path, params: { user: {
         username: "jorge-g",
@@ -19,6 +21,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 
   test "invalid signup" do
     get signup_path
+    assert_template 'users/new'
+    assert_select 'form[action=?]', '/users'
     assert_no_difference 'User.count' do
       post signup_path, params: { user: {
         username: "",
@@ -28,9 +32,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       }}
     end
     assert_template 'users/new'
+    assert_select 'form[action=?]', '/users'
     assert_select 'div#error_explanation'
     assert_select 'div.field_with_errors'
-    assert_select 'form[action=?]', '/signup'
   end
 
 
