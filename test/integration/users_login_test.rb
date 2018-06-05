@@ -9,7 +9,9 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "valid login" do
     get login_path
     assert_template 'sessions/new'
-    post login_path, params: { session: { username: @user.username, password: "password" } }
+    assert_select 'form[action=?]', '/login'
+    login_as(@user)
+    assert is_logged_in?
     assert_redirected_to @user
     follow_redirect!
     assert_template "users/show"
@@ -22,7 +24,9 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "invalid login" do
     get login_path
     assert_template 'sessions/new'
+    assert_select 'form[action=?]', '/login'
     post login_path, params: { session: { email: "", password: "" } }
+    assert_not is_logged_in?
     assert_template 'sessions/new'
     assert_not flash.empty?
     get root_path
