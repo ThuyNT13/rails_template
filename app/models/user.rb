@@ -20,4 +20,10 @@ class User < ApplicationRecord
     # NOTE does case sensitivity really work here?
     uniqueness: { case_sensitive: false },
     format: { with: VALID_EMAIL_REGEX }
+
+    # returns hash digest to be used for setting up fixtures for testing
+    def User.digest(string)
+      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt:: Engine.cost
+      BCrypt::Password.create(string,cost: cost)
+    end
 end

@@ -3,7 +3,9 @@
 user1:
   username: mellowg
   email: faker@email.com
+  password_digest: <%= User.digest('password') %>
 
 user2:
   username: elliott
   email: heartbeat@email.com
+  password_digest: <%= User.digest('password') %>
