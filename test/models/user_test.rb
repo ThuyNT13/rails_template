@@ -45,10 +45,10 @@ class UserTest < ActiveSupport::TestCase
   #   assert_not @user.valid?
   # end
 
-  # test 'password should not be too short' do
-  #   @user.password = "x" * 5
-  #   assert_not @user.valid?
-  # end
+  test 'password should not be too short' do
+    @user.password = "x" * 5
+    assert_not @user.valid?
+  end
 
   test "username should not be too long" do
     @user.username = "a" * 21

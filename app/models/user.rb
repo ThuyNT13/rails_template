@@ -7,10 +7,10 @@ class User < ApplicationRecord
 
   validates :username, :email, uniqueness: true
 
-  # FIXME minimum length validation causes other passing tests to fail in MiniTest
+  # FIXME minimum length validation here causes other passing tests to fail in MiniTest
   # validates :username, length: { minimum: 6 }
 
-  # validates :password, length: { minimum: 20 }
+  validates :password, length: { minimum: 6 }
 
   validates :username,
     uniqueness: true,
