@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  get '/signup', to: 'users#new'
-  # get 'users/new'
 
   # get 'users/index'
   #
-  # get 'users/edit'
-  #
   # get 'users/show'
+
+  get '/signup', to: 'users#new'
+  # get 'users/new'
+
+  post '/signup', to: 'users#create'
+  #
+  # get 'users/edit'
 
   resources :users
 
