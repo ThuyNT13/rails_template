@@ -1,4 +1,4 @@
-<%= form_for(@user, url: signup_path) do |f| %>
+<%= form_for(@user) do |f| %>
 
   <div><%= render 'shared/error_msg', object: @user %></div>
 
@@ -14,5 +14,5 @@
   <%= f.label :password_confirmation, "Confirmation" %>
   <%= f.password_field :password_confirmation %>
 
-  <%= f.submit "Submit" %>
+  <%= f.submit yield(:submit_btn) %>
 <% end %>

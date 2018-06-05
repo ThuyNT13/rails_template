@@ -7,7 +7,21 @@ class ActiveSupport::TestCase
   fixtures :all
   include ApplicationHelper
 
+  def login_as(user)
+    sessions[:user_id] = user.id
+  end
+
   def is_logged_in?
     !session[:user_id].nil?
+  end
+
+end
+
+class ActionDispatch::IntegrationTest
+  def login_as(user, password: 'password')
+    post login_path, params: { session: {
+      username: user.username,
+      password: password
+    }}
   end
 end
