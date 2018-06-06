@@ -1,5 +1,26 @@
  User with simple authentication.
 
+ ## Setting up
+
+```bash
+rails new <app_name> -d=postgresql
+```
+
+```bash
+rails g controller Pages home
+```
+
+```bash
+rails g controller Users index show new edit
+```
+```bash
+rails g model User username:string email:string password_digest:string
+```
+
+```bash
+rails g controller Sessions new
+```
+
 ## Bcrypt authentication
 
 Add Bcrypt to [gemfile](Gemfile).
@@ -29,3 +50,9 @@ ActionController::UrlGenerationError: No route matches {:action=>"edit", :contro
 # test/integration/users_edit_test.rb:13
 get edit_user_path(@suser)
 ```
+
+## Do
+
+[Remember me checkbox](https://www.railstutorial.org/book/advanced_login#sec-remember_me_checkbox)
+
+[Pagination](https://www.railstutorial.org/book/updating_and_deleting_users#sec-pagination)
