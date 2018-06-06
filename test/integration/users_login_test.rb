@@ -9,6 +9,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "valid login" do
     get login_path
     assert_template 'sessions/new'
+    assert_select "title",  head_title("Login")
     assert_select 'form[action=?]', '/login'
     login_as(@user)
     assert is_logged_in?
@@ -24,6 +25,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "invalid login" do
     get login_path
     assert_template 'sessions/new'
+    assert_select "title",  head_title("Login")
     assert_select 'form[action=?]', '/login'
     post login_path, params: { session: { email: "", password: "" } }
     assert_not is_logged_in?
@@ -35,6 +37,9 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   test "valid login followed by logout" do
     get login_path
+    assert_template 'sessions/new'
+    assert_select "title",  head_title("Login")
+    assert_select 'form[action=?]', '/login'
     post login_path, params: { session: {
       username: @user.username,
       password: 'password'

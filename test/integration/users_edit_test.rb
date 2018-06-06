@@ -11,6 +11,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert is_logged_in?
     get edit_user_path(@user)
     assert_template 'users/edit'
+    assert_select "title", head_title("Edit user")
     patch user_path(@user), params: { user: {
       username: '',
       email: '@email.com',

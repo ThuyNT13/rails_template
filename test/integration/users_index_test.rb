@@ -6,10 +6,12 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     @user = users(:user1)
   end
 
-  test 'index' do
+  test 'should get users list with login' do
     login_as(@user)
     get users_path
     assert_template 'users/index'
+    assert_select "title",  head_title("Members")
+    assert_response :success
   end
 
 end
