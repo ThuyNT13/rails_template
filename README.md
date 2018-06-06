@@ -1,9 +1,9 @@
- User with simple authentication.
+ User with simple authentication with all the unit and integration tests that are needed for ensuring code won't break with changes. Probably refactor a few of the tests to DRY them up.
 
  ## Setting up
 
 ```bash
-rails new <app_name> -d=postgresql
+rails new rails_template -d=postgresql
 ```
 
 ```bash
@@ -33,26 +33,16 @@ Remember to set **password** to `password_digest` attribute when [creating the m
 
 Utilizing [**MiniTest**](http://guides.rubyonrails.org/testing.html).
 
-Gathering together all the unit and integration tests that are needed for ensuring code won't break with changes.
+Need to review these tests for now to see why they are failing:
 
-## issue
+* [users_edit_test.rb](test/integration/users_edit_test.rb)
+* [users_controller_test.rb](test/controllers/users_controller_test.rb)
 
-errors:
 
-```bash
-Error:
-UsersEditTest#test_successful_edit:
-ActionController::UrlGenerationError: No route matches {:action=>"edit", :controller=>"users", :id=>nil}, missing required keys: [:id]
-    test/integration/users_edit_test.rb:13:in `block in <class:UsersEditTest>'
-```
+## Support
 
-```ruby
-# test/integration/users_edit_test.rb:13
-get edit_user_path(@suser)
-```
+Please open [an issue](https://github.com/ThuyNT13/rails_template/issues) for support.
 
-## Do
+## Contributing
 
-[Remember me checkbox](https://www.railstutorial.org/book/advanced_login#sec-remember_me_checkbox)
-
-[Pagination](https://www.railstutorial.org/book/updating_and_deleting_users#sec-pagination)
+Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and open a [pull request](https://github.com/ThuyNT13/rails_template/pulls).
