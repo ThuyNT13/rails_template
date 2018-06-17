@@ -26,9 +26,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   test "successful edit" do
     login_as(@user)
     assert is_logged_in?
-    # FIXME users#edit no route matches, missing required [:id] keys
-    # works fine above, line 12
-    get edit_user_path(@suser)
+    get edit_user_path(@user)
     assert_template 'users/edit'
     usernameEdit = "foo"
     emailEdit = "foo@bar.com"
